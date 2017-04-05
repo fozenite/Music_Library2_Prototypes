@@ -30,6 +30,12 @@ var library = {
 // p02: Other Playlist - 1 tracks
 
 var printPlaylists = function () {
+  var shortPath = library.playlists;
+  for(playlistName in shortPath)
+  {
+    var shortPath2 = shortPath[playlistName];
+    console.log(shortPath2.id + ": " + shortPath2.name + " - " + shortPath2.tracks.length + " tracks");
+  }
 
 }
 
@@ -40,6 +46,12 @@ var printPlaylists = function () {
 // t03: Four Thirty-Three by John Cage (Woodstock 1952)
 
 var printTracks = function () {
+  var shortPath = library.tracks;
+  for(trackName in shortPath)
+  {
+    var shortPath2 = shortPath[trackName];
+    console.log(shortPath2.id + ": " + shortPath2.name + " by " + shortPath2.artist + " (" + shortPath2.album + ")");
+  }
 
 }
 
@@ -51,12 +63,29 @@ var printTracks = function () {
 
 var printPlaylist = function (playlistId) {
 
+     var shortPathPlaylists = library.playlists;
+     var shortPathTracks    = library.tracks;
+     var shortPathPlayLists2 = shortPathPlaylists[playlistId];
+     console.log(shortPathPlayLists2.id + ": " + shortPathPlayLists2.name + " - " + shortPathPlayLists2.tracks.length + " tracks");
+
+     var shortPathTracksLookUp = shortPathPlayLists2.tracks;
+
+    for(trackName in shortPathTracksLookUp){
+      var shortPathTracksLookUp2 = shortPathTracks[shortPathTracksLookUp[trackName]];
+        console.log(shortPathTracksLookUp2.id + ": " + shortPathTracksLookUp2.name + " by " + shortPathTracksLookUp2.artist + " (" + shortPathTracksLookUp2.album + ")");
+    }
+
+
+
 }
 
 
 // adds an existing track to an existing playlist
 
 var addTrackToPlaylist = function (trackId, playlistId) {
+
+  var shortPathPlaylists = library.playlists[playlistId].tracks;
+  shortPathPlaylists.push(playlistId);
 
 }
 
@@ -73,12 +102,29 @@ var uid = function() {
 
 var addTrack = function (name, artist, album) {
 
+  // 'Stan'  'Eminem'  'Track'
+  var newTrackId = 't' + uid();
+
+  library.tracks.newTrackId = {
+                   id: newTrackId,
+                   name: name,
+                   artist: artist,
+                   album: album
+
+  };
 }
 
 
 // adds a playlist to the library
 
 var addPlaylist = function (name) {
+  var newPlaylistId = 'p' + uid();
+  library.playlists.newPlaylistId = {
+                                    id: newPlaylistId,
+                                    name: name,
+                                    tracks: []
+  };
+
 
 }
 
@@ -92,3 +138,14 @@ var addPlaylist = function (name) {
 var printSearchResults = function(query) {
 
 }
+
+
+
+//printPlaylist('p01');
+//addTrackToPlaylist('t03', 'p01');
+//printPlaylists();
+//addTrack('Stan', 'Eminem', 'Encore');
+//printTracks();
+
+// addPlaylist('ChillMusic');
+// printPlaylists();
