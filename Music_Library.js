@@ -85,7 +85,7 @@ var printPlaylist = function (playlistId) {
 var addTrackToPlaylist = function (trackId, playlistId) {
 
   var shortPathPlaylists = library.playlists[playlistId].tracks;
-  shortPathPlaylists.push(playlistId);
+  shortPathPlaylists.push(trackId);
 
 }
 
